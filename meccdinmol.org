@@ -1,0 +1,95 @@
+* Dinamica Molecolare
+** Force Fields
+Rappresenta il campo di forze in un sistema, senza calcolare le
+superfici di energia potenziale direttamente.
+
+Il potenziale viene preso così:
+
+U_{tot} = U_{stretching} + U_{bending} + U_{tors} + U_{vdw} + U_{el} + U_{cross}
+
+
+*** Stretching e Bending
+Si calcola l'energia come derivata del potenziale prendendo come
+potenziale per esempio il potenziale di morse:
+
+V_m(\Delta R) = D*exp(-\alpha \Delta R)^2 
+
+\alpha = \sqrt \frac k {2\mu}
+
+Nota: le costanti dei bending sono più grandi delle costanti di stretching
+*** Torsionali
+Si usano 
+** Monte Carlo
+** Metodi Dinamica Molecolare
+
+* Metodi HF
+** RHF
+Lo sappiamo tutti
+** UHF
+Usa due set di orbitali diversi uno per gli spin \alpha e uno per gli
+spin \beta
+
+Soffre di problemi di "contaminazione di spin", praticamente per forza
+di cose le funzioni d'onda prodotte da questo metodo non produce
+funzioni che sono autovalori dell'operatore di spin.
+
+** ROHF
+Una parte del calcolo viene fatta tenendo gli orbitali doppiamente
+occupati, un'altra parte tenendo orbitali occupati con un solo spin su.
+
+Descrive bene solo gli alto spin
+** Convergenza
+Si utilizza il DIIS, a parte il nome è una procedura che serve per
+migliorare la convergenza dei vari metodi iterativi di tipo SCF.
+
+Funziona in questo modo:
+
+Ad ogni iterazione SCF viene prodotto un operatore di fock F e una
+matrice densità D. Si suppone che ci sia un modo per valutare una
+certa matrice E che da fornisce l'errore, in altre parole quanto è
+distante la convergenza.
+
+Supponendo di avere fatto n iterazioni, abbiamo n matrici F e n
+matrici D, e n matrici E, si definisce una funzione scalare che sta a
+rappresentare un valore scalare dell'errore, questa dipende da un
+vettore c, nel modo che si vede nella seconda equazione.
+
+ErrF(c) = traccia(E_{n+1}*E_{n+1})
+
+Prendendo:
+
+E_{n+1} = \sum_{i=0}^n c_i E_i
+
+(la somma di tutti i precedenti)
+
+La minimizzazione di ErrF(c) avviene minimizzando i coefficienti c,
+ovvero attraverso la diagonalizzazione di una matrice.
+
+Nella realtà gli autovalori vengono ottenuti attraverso l'inversione
+di una matrice che ha come dimensioni una cosa come n(numero di
+iterazioni), ecco perchè si chiama direct inversion of iterative
+space.
+
+Vengono ottenuti dei coefficienti c che vengono utilizzati per
+generare il nuovo F in questo modo:
+
+F_n = \sum_{i=0}^n c_i F_i
+
+* Metodi CI
+** Full CI
+** SDCI
+** MCSCF
+* Metodi MP e CC
+** MP2
+** CC
+* DFT
+** TDDFT
+* Argomenti sparsi
+** Correlazione
+
+* Org-Reference
+: #+CAPTION: This is the caption for the next figure link (or table)
+:     #+LABEL:   fig:SED-HR4049
+:     [[./img/a.jpg]]
+
+#+STARTUP: hidestars
