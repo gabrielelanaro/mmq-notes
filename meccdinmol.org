@@ -24,7 +24,9 @@ Si usano
 
 * Metodi HF
 ** RHF
-Lo sappiamo tutti
+Lo sappiamo tutti.
+
+C'è il teorema di Koopman che dice che gli autovalori sono le energie degli orbitali molecolari, o almeno una loro approssimazione.
 ** UHF
 Usa due set di orbitali diversi uno per gli spin \alpha e uno per gli
 spin \beta
@@ -75,8 +77,56 @@ generare il nuovo F in questo modo:
 
 F_n = \sum_{i=0}^n c_i F_i
 
+
 * Metodi CI
+Il punto di partenza è un calcolo RHF, ci sono gli orbitali molecolari, un tot di orbitali sono occupati, il resto virtuali.
+
+Si fa il determinante di slater con gli orbitali occupati, se scambio un orbitale occupato con uno virtuale ho fatto il determinante "eccitato".
+
+Costruire una funzione d'onda che combina gli orbitali molecolari fornisce l'energia di correlazione per un dato basis set.
+
+Solitamente non si fanno tutte le eccitazione da tutti gli orbitali a tutti gli orbitali perchè si è interessati alle differenze tra due stati.
+
+Per esempio il contributo della correlazione degli orbitali di Core tra due stati elettronici vicini sarà grande ma si annullerà se si fa la differenza, il contributo rilevante infatti è la correlazione degli elettroni di valenza.
+
+Lo stesso vale per orbitali troppo _distanti_ in termini energetici.
+ 
 ** Full CI
+
+Funzione d'onda è la combinazione lineare dei determinanti di slater, i coefficienti dell'espansione vengono ottimizzati nei confronti dell'energia elettronica.
+
+Lo sviluppo è formalmente identico a quello di HF.
+
+La funzione d'onda è esplicitamente definita così:
+
+\Psi_{CI} = a_0 \Phi_{HF} + \sum_S a_S \Phi_S + ..doppie..triple
+
+Ci sono le singole, le doppie, le triple fino a tutte le eccitazioni possibili.
+
+Adesso bisogna minimizzare l'energia, quindi si fa la lagrangiana, uguale a quella HF (col vincolo di normalizzazione).
+
+L = <\Psi|H|\Psi> -\lambda (<\Psi|\Psi>)
+
+Calcoliamoci i pezzettini
+
+<\Psi|H|\Psi> = \sum_i a_i^2 E_i + \sum_i \sum_{i\neqj}  <\Phi_i|H|\Phi_j>
+
+<\Psi|\Psi> = \sum_i a_i^2
+
+Poi deriviamo, e otteniamo un set di equazioni che mettiamo in una matrice da diagonalizzare.
+
+\frac {\partial L}{a_i} = 2 a_i E_i2 \sum_j a_j <\Phi_i|H|\Phi_j> -2\lambda a_i = 0
+
+Esistono trucchetti per calcolare gli elementi H_{ij} facilmente. Ad esempio  si fanno delle considerazioni di spin, le configurazioni i e j devono avere lo stesso spin totale altrimenti gli <\alpha|\beta> fanno annullare il tutto.
+
+Esistono anche configurazioni che danno un misto tra i diversi spin, succede che quindi alcuni prodotti finiscono per non annullarsi, l'utilizzo di Configuration State Functions ovvia il problema.
+
+La simmetria può ancora aiutare perchè l'Hamiltoniano deve essere totalsimmetrico.
+
+Il teorema di Brillouin ci dice che gli elementi di matrice delle eccitazioni singole sono 0.
+
+La matrice CI ha una forma diagonale a blocchi.
+
 ** SDCI
 ** MCSCF
 * Metodi MP e CC
