@@ -99,24 +99,30 @@ Lo sviluppo è formalmente identico a quello di HF.
 
 La funzione d'onda è esplicitamente definita così:
 
+\[
 \Psi_{CI} = a_0 \Phi_{HF} + \sum_S a_S \Phi_S + ..doppie..triple
+\]
 
 Ci sono le singole, le doppie, le triple fino a tutte le eccitazioni possibili.
 
 Adesso bisogna minimizzare l'energia, quindi si fa la lagrangiana, uguale a quella HF (col vincolo di normalizzazione).
 
+\[
 L = <\Psi|H|\Psi> -\lambda (<\Psi|\Psi>)
+\]
 
 Calcoliamoci i pezzettini
 
+\[
 <\Psi|H|\Psi> = \sum_i a_i^2 E_i + \sum_i \sum_{i\neqj}  <\Phi_i|H|\Phi_j>
-
+\]
+\[
 <\Psi|\Psi> = \sum_i a_i^2
-
+\]
 Poi deriviamo, e otteniamo un set di equazioni che mettiamo in una matrice da diagonalizzare.
-
+\[
 \frac {\partial L}{a_i} = 2 a_i E_i2 \sum_j a_j <\Phi_i|H|\Phi_j> -2\lambda a_i = 0
-
+\]
 Esistono trucchetti per calcolare gli elementi H_{ij} facilmente. Ad esempio  si fanno delle considerazioni di spin, le configurazioni i e j devono avere lo stesso spin totale altrimenti gli <\alpha|\beta> fanno annullare il tutto.
 
 Esistono anche configurazioni che danno un misto tra i diversi spin, succede che quindi alcuni prodotti finiscono per non annullarsi, l'utilizzo di Configuration State Functions ovvia il problema.
