@@ -137,8 +137,88 @@ La matrice CI ha una forma diagonale a blocchi.
 ** MCSCF
 * Metodi MP e CC
 ** MP2
+MP2 è size consistent.
 ** CC
+Frase assurda: Il coupled clusters aggiunge tutte le correzioni di un determinato tipo all'ordine infinito.
+
+*** Alcune definizioni
+
+- operatore di eccitazione: genera tutte le eccitazioni
+  \[T = T_1 + T_2 + ...\]
+
+- funzione coupled clusters, che va espansa
+  \[ \Psi_{CC} = e^T \Phi_0 \]
+- operatore cluster raggruppato per eccitazione
+
+\[ e^{T} = 1 + T_{1} + (T_{2} + 1/2 T_{1}^{2}) + (T_{3} + T_{1}T_{2} ...)\]
+
+
+*** Sviluppo eq Schroedinger
+\[ H e^{T} \Phi_{0} = E e^{T} \Phi_{0} \]
+
+ La procedura da seguire è proiettare l'equazione di schroedinger su \langle \Phi_0 | (in realtà non è vero)
+
+L'equazione coupled cluster prevede di fare il valor medio di questo hamiltoniano:
+\[
+\langle \Psi_0 e^{-T} H  e^{T}\Psi_0 \rangle = E_{CC} \langle \Psi_{0} \Psi_{0} \rangle
+\]
+
+E le equazioni CC sono invece le proiezioni su ogni stato eccitato:
+
+\[
+\langle \Psi_{ecc} e^{-T} H e^{T} \Psi_{0} \rangle = 0
+\[
+Il motivo di equqaione viene da quella precedente, perchè insomma compare il termine:
+
+\[
+E_{CC} \langle \Psi_{ecc} \Psi_{0} \rangle = 0
+\]
+
+E da qui quindi vengono ste equazioni coupled clusters. 
+
 * DFT
+** Teoria orbital Free
+*** Teorema HK 1: Energia stato fondamentale determinata da \rho totalmente.
+Dimostrazione:
+
+si suppone che a \rho sono associati due stati, \psi e \psi' associati a due hamiltoniani diversi (sono autofunzioni), questi sono definiti così:
+
+H = T + V_ee + V_ext
+H' = T + V_ee + V_ext '
+
+Facciamo i due sandwich:
+
+ \langle \Psi' H \Psi' \rangle > \langle \Psi H \Psi \rangle
+
+ per il teorema variazionale.
+
+Qui si sottrae e si somma per H' H' il termine 1:
+
+ \langle \Psi' H  + H' - H'\Psi' \rangle  = 
+  \langle \Psi' H  - H' \Psi' \rangle + \langle \Psi' H' \Psi' \rangle
+*** Espressione dell'energia come funzionale di \rho
+
+E[\rho] = E_T[\rho] + E_ne[\rho] + E_ee[\rho]
+
+*** Thomas Fermi
+K[\rho] = 
+T[\rho] = 
+
+*** Espansioni ordine superiore
+
+Si esprime T come somma di termini tipo espansione di taylor.
+
+T = T_TF T_1[\grad \rho] T_2[\grad^2 \rho] + ...
+
+** Teoria con gli orbitali Kohn Sham
+---
+** Funzionali Scambio Correlazione
+Le caratteristiche che devono avere sono:
+- senza self-interaction (un sistema di H isolato non deve avere correlazione/scambio)
+- Quando \rho è costante devo riottenere la thomas/fermi
+- L'energia di scambio deve scalare linearmente con le dimensioni del sistema
+- scambio e corr. devono avere un limite superiore
+   
 ** TDDFT
 * Argomenti sparsi
 ** Correlazione
